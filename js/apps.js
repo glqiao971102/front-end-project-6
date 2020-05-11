@@ -65,7 +65,7 @@ qwerty.addEventListener('click', (e) => {
     if(event.target.tagName === 'BUTTON'){
         const clickButton = e.target
         clickButton.className = 'chosen'
-        clickButton.setAttribute("disable", true)
+        clickButton.disabled = true
         let letterFound = checkLetter(clickButton);
     //if user is miss the target, it will lose a heart
         if (letterFound === null) {
@@ -117,6 +117,7 @@ function reset(){
         const resetPhrase = getRandomPhraseAsArray(phrases);
         addPhraseToDisplay(resetPhrase);
         overlay.style.display = 'none';
+        missed = 0
     });
 }
 
@@ -128,12 +129,12 @@ function checkwin(){
     const overLay = document.getElementById("overlay")
 
     if(classLetter.length == classShow.length){
-        overLay.className += ' win'
+        overLay.className = ' win'
         overLay.firstElementChild.textContent = "You WIN!!!!!!"
         overLay.style.display = 'flex'
         reset()
     }else if(missed >= 5){
-        overLay.className += ' lose'
+        overLay.className = ' lose'
         overLay.firstElementChild.textContent = "You Lose, Please try again"
         overLay.style.display = 'flex'
         reset()
